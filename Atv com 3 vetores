@@ -1,0 +1,85 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+
+
+int main()
+{
+    setlocale(LC_ALL,"");
+
+   float preco[13],preco_novo[13],v_aumento[13],maior_p,menor_p;
+   int p,quant=0,a=0;
+
+   /*
+
+   Preço antigo -> preco
+   Preço novo -> preco_novo
+   Valor de aumento -> v_aumento
+
+   */
+
+
+
+   for(p=0;p<2;p++) // preços dos produtos
+   {
+        printf("\n Produtos \n\n 0-Sofá\n 1-Mesa de centro\n 2-Aparador\n");
+        printf(" 3-Cama box\n 4-Guarda-Roupa\n 5-Penteadeira\n");
+        printf(" 6-Colchões\n 7-Berço\n 8-Cômoda\n");
+        printf(" 9-Mesa\n 10-Cadeira\n 11-Armário\n 12-Gaveteiro\n");
+        
+        printf("\n Informe o preço do produto %d\n",p);
+        scanf("%f",&preco[p]);
+
+        printf("\n Informe o novo preço do produto %d\n",p);
+        scanf("%f",&preco_novo[p]);
+
+        system("cls");
+   }
+
+   for(p=0;p<2;p++) // aumento dos produtos , maior e menor aumento
+   {
+       v_aumento[p]=preco_novo[p]-preco[p];
+
+       if(p==0)
+        {
+            menor_p=v_aumento[p];
+            maior_p=v_aumento[p];
+        }
+
+        if(v_aumento[p]<menor_p)
+        {
+            menor_p=v_aumento[p];
+        }
+
+        if(v_aumento[p]>maior_p)
+        {
+            maior_p=v_aumento[p];
+        }
+   }
+
+        printf("\n Produtos \n\n 0-Sofá\n 1-Mesa de centro\n 2-Aparador\n");
+        printf(" 3-Cama box\n 4-Guarda-Roupa\n 5-Penteadeira\n");
+        printf(" 6-Colchões\n 7-Berço\n 8-Cômoda\n");
+        printf(" 9-Mesa\n 10-Cadeira\n 11-Armário\n 12-Gaveteiro\n");
+
+        printf("\n Valor de aumento de cada produto \n");
+
+   for(p=0;p<2;p++) // exibindo os valores do vetor 3
+   {
+       printf("\n %d - %.2f \n",p,v_aumento[p]);
+   }
+
+   printf("\n Valor do maior e menor aumento \n"); // exibindo o maior e menor valor
+   printf("\n %.2f \n",maior_p);
+   printf("\n %.2f \n",menor_p);
+
+   for(p=0;p<2;p++)
+   {
+       if(v_aumento[p]>=100)
+       {
+           quant=quant+1;
+       }
+   }
+
+   printf("\n Produtos que tiveram aumento superior a 100,00 \n"); // exibindo a quantidade produtos que tiveram aumento superior a 100,00
+}
