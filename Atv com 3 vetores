@@ -20,7 +20,7 @@ int main()
 
 
 
-   for(p=0;p<2;p++) // preços dos produtos
+   for(p=0;p<12;p++) // preços dos produtos
    {
         printf("\n Produtos \n\n 0-Sofá\n 1-Mesa de centro\n 2-Aparador\n");
         printf(" 3-Cama box\n 4-Guarda-Roupa\n 5-Penteadeira\n");
@@ -36,7 +36,7 @@ int main()
         system("cls");
    }
 
-   for(p=0;p<2;p++) // aumento dos produtos , maior e menor aumento
+   for(p=0;p<12;p++) // aumento dos produtos , maior e menor aumento
    {
        v_aumento[p]=preco_novo[p]-preco[p];
 
@@ -64,7 +64,7 @@ int main()
 
         printf("\n Valor de aumento de cada produto \n");
 
-   for(p=0;p<2;p++) // exibindo os valores do vetor 3
+   for(p=0;p<12;p++) // exibindo os valores do vetor 3
    {
        printf("\n %d - %.2f \n",p,v_aumento[p]);
    }
@@ -73,7 +73,7 @@ int main()
    printf("\n %.2f \n",maior_p);
    printf("\n %.2f \n",menor_p);
 
-   for(p=0;p<2;p++)
+   for(p=0;p<12;p++)
    {
        if(v_aumento[p]>=100)
        {
