@@ -1,0 +1,486 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+#include <string.h>
+
+void tela_entrada()
+{
+    printf("\t ================================================= \n");
+    printf("\t\t\t Padaria do Cefet\n");
+    printf("\t ================================================= \n");
+}
+void tela_final()
+{
+    printf("\t ========================================================= \n");
+    printf("\t\t A Padaria do Cefet agradeçe a prioridade! \n");
+    printf("\t ========================================================= \n");
+}
+
+typedef struct
+{
+    char nome[100];
+    char cpf[50];
+    char ndt[50];
+} Cadastro;
+
+int main()
+{
+    setlocale(LC_ALL, "Portuguese");
+
+    FILE *file;
+    file=fopen("cadastro.txt","a+");
+
+    Cadastro c1;
+    int produto=0,tipo_produto=0,pagamento=0,cad=0;
+    float vf=0.0;
+
+    int quant[5][5] = {{0,0,0,0,0},
+                       {0,0,0,0,0},
+                       {0,0,0,0,0},
+                       {0,0,0,0,0},
+                       {0,0,0,0,0}};
+
+ // Para alterar o preço dos produtos é so mudar na matriz abaixo "preco_p"
+    float preco_p[5][5] = { {6.99,0.80,8.50,12.99,10.30},
+                            {22.65,32.99,13.89,31.96,12.80},
+                            {6.98,7.25,12.99,18.36,36.90},
+                            {3.99,17.99,3.99,6.00,14.79},
+                            {9.00,8.20,10.49,27.00,79.97}};
+
+// Produtos referente a matriz preco_p e quant:
+
+// 0.0= Forma     ,0.1=Frances   ,0.2=Baguette  ,0.3=Sirio         ,0.4=Brioche
+// 1.0= Mossarela ,1.1=Provolone ,1.2=Prato     ,1.3=Gorgonzola    ,1.4=Parmesao
+// 2.0= Presunto  ,2.1=Salame    ,2.2=Mortadela ,2.3=Peito de Peru ,2.4=Parma
+// 3.0= Integral  ,3.1=Semi d.   ,3.2=Desnatado ,3.3=Cabra         ,3.4=Vegetal
+// 4.0= Com Sal   ,4.1=Sem sal   ,4.2=Em barra  ,4.3=Fermenatada   ,4.4=Clarificada
+
+
+ // inicio
+    while(cad!=9)
+    {
+  tela_entrada();
+
+    fflush(stdin);
+    printf("\n Informe seu Nome Completo: ");
+    gets(c1.nome);
+
+    printf("\n Informe seu Cpf(Sem ponto): ");
+    gets(c1.cpf);
+
+    printf("\n Informe seu Numero de Telefone(Sem ponto):");
+    gets(c1.ndt);
+    fflush(stdin);
+
+    printf("\n\t Seus dados estão corretos? \n");
+    printf("\t Digite 1 se deseja alterar seus dados.\n ");
+    printf("\t Digite 9 para prosseguir com o pedido.\n ");
+    scanf("%d",&cad);
+        if(cad==1)
+        {
+         system("cls");
+        }
+    }
+    fprintf(file,"%s \n",c1.nome);
+    fprintf(file,"%s \n",c1.cpf);
+    fprintf(file,"%s \n",c1.ndt);
+
+system("cls");
+
+ // Produtos
+
+    while(produto!=9)
+    {
+  tela_entrada();
+    printf("\n Qual produto voce deseja: \n ");
+    printf("\n Digite 9 para sair ou finalizar seu pedido!! \n\n ");
+    printf("\n 0-pão: \n ");
+    printf("\n 1-queijo: \n ");
+    printf("\n 2-presunto: \n ");
+    printf("\n 3-leite: \n ");
+    printf("\n 4-manteiga: \n\n ");
+    scanf("%d", &produto);
+
+system("cls");
+
+        if(produto==0)
+        {
+           printf("\n Qual pão voce deseja: \n ");
+           printf("\n Digie 9 para voltar: \n\n ");
+           printf("\n 0-Forma - R$%.2f 400g \n ",preco_p[0][0]);
+           printf("\n 1-Frances - R$%.2f Un.\n ",preco_p[0][1]);
+           printf("\n 2-Baguette - R$%.2f 300g \n ",preco_p[0][2]);
+           printf("\n 3-Sirio - R$%.2f 400g \n ",preco_p[0][3]);
+           printf("\n 4-Brioche - R$%.2f 520g \n\n ",preco_p[0][4]);
+           scanf("%d", &tipo_produto);
+
+            if(tipo_produto==0)
+            {
+                printf("\n\n Qual a quantidade?\t");
+                scanf("%d", &quant[0][0]);
+                vf=(preco_p[0][0] * quant[0][0] + vf);
+
+            }
+             if(tipo_produto==1)
+            {
+                printf("\n\n Qual a quantidade?\t");
+                scanf("%d", &quant[0][1]);
+                vf=(vf+preco_p[0][1]*quant[0][1]);
+            }
+            if(tipo_produto==2)
+            {
+                printf("\n\n Qual a quantidade?\t");
+                scanf("%d", &quant[0][2]);
+                vf=(vf+preco_p[0][2]*quant[0][2]);
+            }
+             if(tipo_produto==3)
+            {
+                printf("\n\n Qual a quantidade?\t");
+                scanf("%d", &quant[0][3]);
+                vf=(vf+preco_p[0][3]*quant[0][3]);
+            }
+             if(tipo_produto==4)
+            {
+                printf("\n\n Qual a quantidade?\t");
+                scanf("%d", &quant[0][4]);
+                vf=(vf+preco_p[0][4]*quant[0][4]);
+            }
+            else
+            {
+               system("cls");
+            }
+        }
+
+        if(produto==1)
+        {
+           printf("\n Qual queijo voce deseja: \n ");
+           printf("\n Digie 9 para voltar: \n\n ");
+           printf("\n 0-Mussarela - R$%.2f un. \n ",preco_p[1][0]);
+           printf("\n 1-Provolone - R$%.2f 400g \n ",preco_p[1][1]);
+           printf("\n 2-Prato - R$%.2f 300g \n ",preco_p[1][2]);
+           printf("\n 3-Gorgonzola - R$%.2f 400g \n ",preco_p[1][3]);
+           printf("\n 4-Parmesão - R$%.2f 100g \n\n ",preco_p[1][4]);
+           scanf("%d", &tipo_produto);
+
+            if(tipo_produto==0)
+            {
+                printf("\n\n Qual a quantidade?\t");
+                scanf("%d", &quant[1][0]);
+                vf=(preco_p[1][0] * quant[1][0] + vf);
+
+            }
+             if(tipo_produto==1)
+            {
+                printf("\n\n Qual a quantidade?\t");
+                scanf("%d", &quant[1][1]);
+                vf=(vf+preco_p[1][1]*quant[1][1]);
+            }
+            if(tipo_produto==2)
+            {
+                printf("\n\n Qual a quantidade?\t");
+                scanf("%d", &quant[1][2]);
+                vf=(vf+preco_p[1][2]*quant[1][2]);
+            }
+             if(tipo_produto==3)
+            {
+                printf("\n\n Qual a quantidade?\t");
+                scanf("%d", &quant[1][3]);
+                vf=(vf+preco_p[1][3]*quant[1][3]);
+            }
+             if(tipo_produto==4)
+            {
+                printf("\n\n Qual a quantidade?\t");
+                scanf("%d", &quant[1][4]);
+                vf=(vf+preco_p[1][4]*quant[1][4]);
+            }
+            else
+            {
+               system("cls");
+            }
+        }
+
+        if(produto==2)
+        {
+           printf("\n Qual Presunto voce deseja: \n ");
+           printf("\n Digie 9 para voltar: \n\n ");
+           printf("\n 0-Presunto - R$%.2f 200g\n ",preco_p[2][0]);
+           printf("\n 1-Salame - R$%.2f un.\n ",preco_p[2][1]);
+           printf("\n 2-Mortadela - R$%.2f 1k\n ",preco_p[2][2]);
+           printf("\n 3-Peito de peru - R$%.2f 400g \n ",preco_p[2][3]);
+           printf("\n 4-Parma - R$%.2f 100g\n\n ",preco_p[2][4]);
+           scanf("%d", &tipo_produto);
+
+            if(tipo_produto==0)
+            {
+                printf("\n\n Qual a quantidade?\t");
+                scanf("%d", &quant[2][0]);
+                vf=(preco_p[2][0]*quant[2][0]+vf);
+            }
+             if(tipo_produto==1)
+            {
+                printf("\n\n Qual a quantidade?\t");
+                scanf("%d", &quant[2][1]);
+                vf=(vf+preco_p[2][1]*quant[2][1]);
+            }
+            if(tipo_produto==2)
+            {
+                printf("\n\n Qual a quantidade?\t");
+                scanf("%d", &quant[2][2]);
+                vf=(vf+preco_p[2][2]*quant[2][2]);
+            }
+             if(tipo_produto==3)
+            {
+                printf("\n\n Qual a quantidade?\t");
+                scanf("%d", &quant[2][3]);
+                vf=(vf+preco_p[2][3]*quant[2][3]);
+            }
+             if(tipo_produto==4)
+            {
+                printf("\n\n Qual a quantidade?\t");
+                scanf("%d", &quant[2][4]);
+                vf=(vf+preco_p[2][4]*quant[2][4]);
+            }
+            else
+            {
+               system("cls");
+            }
+        }
+
+        if(produto==3)
+        {
+           printf("\n Qual Leite voce deseja: \n ");
+           printf("\n Digie 9 para voltar: \n\n ");
+           printf("\n 0-Integral - R$%.2f 1L \n ",preco_p[3][0]);
+           printf("\n 1-Semidesnatado - R$%.2f 1L \n ",preco_p[3][1]);
+           printf("\n 2-Desnatado - R$%.2f 1L \n ",preco_p[3][2]);
+           printf("\n 3-Cabra - R$%.2f 1L \n ",preco_p[3][3]);
+           printf("\n 4-Vegetal - R$%.2f 1L \n\n ",preco_p[3][4]);
+           scanf("%d", &tipo_produto);
+
+            if(tipo_produto==0)
+            {
+                printf("\n\n Qual a quantidade?\t");
+                scanf("%d", &quant[3][0]);
+                vf=(preco_p[3][0]*quant[3][0]+vf);
+
+            }
+             if(tipo_produto==1)
+            {
+                printf("\n\n Qual a quantidade?\t");
+                scanf("%d", &quant[3][1]);
+                vf=(vf+preco_p[3][1]*quant[3][1]);
+            }
+            if(tipo_produto==2)
+            {
+                printf("\n\n Qual a quantidade?\t");
+                scanf("%d", &quant[3][2]);
+                vf=(vf+preco_p[3][2]*quant[3][2]);
+            }
+             if(tipo_produto==3)
+            {
+                printf("\n\n Qual a quantidade?\t");
+                scanf("%d", &quant[3][3]);
+                vf=(vf+preco_p[3][3]*quant[3][3]);
+            }
+             if(tipo_produto==4)
+            {
+                printf("\n\n Qual a quantidade?\t");
+                scanf("%d", &quant[3][4]);
+                vf=(vf+preco_p[3][4]*quant[3][4]);
+            }
+            else
+            {
+               system("cls");
+            }
+        }
+
+        if(produto==4)
+        {
+           printf("\n Qual Manteiga voce deseja: \n ");
+           printf("\n Digie 9 para voltar: \n\n ");
+           printf("\n 0-Com Sal - R$%.2f 200g\n ",preco_p[4][0]);
+           printf("\n 1-Sem sal - R$%.2f 200g\n ",preco_p[4][1]);
+           printf("\n 2-Em barra - R$%.2f 200g \n ",preco_p[4][2]);
+           printf("\n 3-Fermentada - R$%.2f 200g \n ",preco_p[4][3]);
+           printf("\n 4-Clarificada - R$%.2f 500g\n\n ",preco_p[4][4]);
+           scanf("%d", &tipo_produto);
+
+            if(tipo_produto==0)
+            {
+                printf("\n\n Qual a quantidade?\t");
+                scanf("%d", &quant[4][0]);
+                vf=(preco_p[4][0]*quant[4][0]+vf);
+
+            }
+             if(tipo_produto==1)
+            {
+                printf("\n\n Qual a quantidade?\t");
+                scanf("%d", &quant[4][1]);
+                vf=(vf+preco_p[4][1]*quant[4][1]);
+            }
+            if(tipo_produto==2)
+            {
+                printf("\n\n Qual a quantidade?\t");
+                scanf("%d", &quant[4][2]);
+                vf=(vf+preco_p[4][2]*quant[4][2]);
+            }
+             if(tipo_produto==3)
+            {
+                printf("\n\n Qual a quantidade?\t");
+                scanf("%d", &quant[4][3]);
+                vf=(vf+preco_p[4][3]*quant[4][3]);
+            }
+             if(tipo_produto==4)
+            {
+                printf("\n\n Qual a quantidade?\t");
+                scanf("%d", &quant[4][4]);
+                vf=(vf+preco_p[4][4]*quant[4][4]);
+            }
+            else
+            {
+               system("cls");
+            }
+        }
+system("cls");
+    }
+ // Nota Fiscal
+
+            system("cls");
+    printf("\t ================================================= \n");
+    printf("\t\t\t Nota Fiscal \n");
+    printf("\t ================================================= \n");
+    printf("\t Nome: %s \n", c1.nome);
+    printf("\t Cpf: %s \n", c1.cpf);
+    printf("\t Numero de telefone: %s \n\n", c1.ndt);
+    printf("\t ===================================\n");
+
+        if(quant[0][0]>=1)
+        {
+          printf("\t Pão de Forma - %.2f x %d \n",preco_p[0][0],quant[0][0]);
+        }
+        if(quant[0][1]>=1)
+        {
+          printf("\t Pão Frances - %.2f x %d \n",preco_p[0][1],quant[0][1]);
+        }
+         if(quant[0][2]>=1)
+        {
+          printf("\t Pão Baguette - %.2f x %d \n",preco_p[0][2],quant[0][2]);
+        }
+        if(quant[0][3]>=1)
+        {
+          printf("\t Pão Sirio - %.2f x %d \n",preco_p[0][3],quant[0][3]);
+        }
+        if(quant[0][4]>=1)
+        {
+          printf("\t Pão Brioche - %.2f x %d \n",preco_p[0][4],quant[0][4]);
+        }
+
+         if(quant[1][0]>=1)
+        {
+          printf("\t Queijo Mussarela - %.2f x %d \n",preco_p[1][0],quant[1][0]);
+        }
+        if(quant[1][1]>=1)
+        {
+          printf("\t Queijo Provolone - %.2f x %d \n",preco_p[1][1],quant[1][1]);
+        }
+         if(quant[1][2]>=1)
+        {
+          printf("\t Queijo Prato - %.2f x %d \n",preco_p[1][2],quant[1][2]);
+        }
+        if(quant[1][3]>=1)
+        {
+          printf("\t Queijo Gorgonzola - %.2f x %d \n",preco_p[1][3],quant[1][3]);
+        }
+        if(quant[1][4]>=1)
+        {
+          printf("\t Queijo Parmesão - %.2f x %d \n",preco_p[1][4],quant[1][4]);
+        }
+
+        if(quant[2][0]>=1)
+        {
+          printf("\t Presunto - %.2f x %d \n",preco_p[2][0],quant[2][0]);
+        }
+        if(quant[2][1]>=1)
+        {
+          printf("\t Salame - %.2f x %d \n",preco_p[2][1],quant[2][1]);
+        }
+         if(quant[2][2]>=1)
+        {
+          printf("\t Mortadela - %.2f x %d \n",preco_p[2][2],quant[2][2]);
+        }
+        if(quant[2][3]>=1)
+        {
+          printf("\t Peito de peru - %.2f x %d \n",preco_p[2][3],quant[2][3]);
+        }
+        if(quant[2][4]>=1)
+        {
+          printf("\t Parma - %.2f x %d \n",preco_p[2][4],quant[2][4]);
+        }
+
+         if(quant[3][0]>=1)
+        {
+          printf("\t Leite Integral - %.2f x %d \n",preco_p[3][0],quant[3][0]);
+        }
+        if(quant[3][1]>=1)
+        {
+          printf("\t Leite Semi Desnatado - %.2f x %d \n",preco_p[3][1],quant[3][1]);
+        }
+         if(quant[3][2]>=1)
+        {
+          printf("\t Leite Desnatado - %.2f x %d \n",preco_p[3][2],quant[3][2]);
+        }
+        if(quant[3][3]>=1)
+        {
+          printf("\t Leite Cabra - %.2f x %d \n",preco_p[3][3],quant[3][3]);
+        }
+        if(quant[3][4]>=1)
+        {
+          printf("\t Leite Vegetal - %.2f x %d \n",preco_p[3][4],quant[3][4]);
+        }
+
+        if(quant[4][0]>=1)
+        {
+          printf("\t Manteiga com sal - %.2f x %d \n",preco_p[4][0],quant[4][0]);
+        }
+        if(quant[4][1]>=1)
+        {
+          printf("\t Manteiga sem sal - %.2f x %d \n",preco_p[4][1],quant[4][1]);
+        }
+         if(quant[4][2]>=1)
+        {
+          printf("\t Manteiga em barra - %.2f x %d \n",preco_p[4][2],quant[4][2]);
+        }
+        if(quant[4][3]>=1)
+        {
+          printf("\t Manteiga Fermentada - %.2f x %d \n",preco_p[4][3],quant[4][3]);
+        }
+        if(quant[4][4]>=1)
+        {
+          printf("\t Manteiga Clarificada - %.2f x %d \n",preco_p[4][4],quant[4][4]);
+        }
+
+    printf("\t ===================================\n");
+    printf("\n\t Preço a pagar: %.2f \n\n",vf);
+    printf("\t ===================================\n");
+
+    printf("\n Deseja prosseguir com o pagamento ? \n ");
+    printf("\n 0- Sim \n ");
+    printf("\n 1- Não \n\n ");
+    scanf("%d", &pagamento);
+
+    if(pagamento==0)
+    {
+system("cls");
+       printf("\n Pedido Finalizado \n ");
+       printf("\n Opções de pagamento (Debito,Credito e Dinheiro) \n\n ");
+
+       tela_final();
+    }
+    else
+    {
+system("cls");
+       printf("\n Pedido Encerrado \n\n ");
+       tela_final();
+
+    }
+}
