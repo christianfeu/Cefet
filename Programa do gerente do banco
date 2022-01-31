@@ -1,0 +1,101 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+#include <string.h>
+
+float menor_p(float c[])
+{
+    float mf=0.0;
+    int i;
+
+    system("cls");
+
+        mf=c[1].saldo;
+
+        for(i=2;i<13;i++)
+        {
+            if(c[i].saldo<mf)
+            {
+               mf=c[i].saldo;
+
+            }
+        }
+    return mf;
+}
+
+typedef struct
+{
+    char ndcc[50];
+    char nome[50];
+    float saldo;
+} Cadastro;
+Cadastro c[12];
+
+
+int main()
+{
+   setlocale(LC_ALL, "Portuguese");
+
+   int opcoes=0,i=0,a=0;
+   float mf=0.0
+
+
+   while(opcoes!=4)
+   {
+
+    printf("+++++++++++++++++++++++++++++++++++++++++++++++++");
+    printf("\n\t\t BANCO CEFET \n");
+    printf("\n 1 – Cadastrar novo cliente \n");
+    printf("\n 2 – Consultar todos os clientes \n");
+    printf("\n 3 – Mostrar dados do cliente com menor saldo em conta corrente \n");
+    printf("\n 4 – Sair \n");
+    printf("\n+++++++++++++++++++++++++++++++++++++++++++++++++ \n");
+    printf("\n Informe o número da opção desejada:  \n");
+    scanf("%d",&opcoes);
+
+    if(opcoes==1)
+    {
+        for(i=1;i<13;i++)
+        {
+            system("cls");
+            fflush(stdin);
+
+            printf("\n Cadastrar cliente numero %d \n",i);
+
+            printf("\n Informe o número da conta corrente:\n");
+            gets(c[i].ndcc);
+
+            printf("\n Informe o Nome completo: ");
+            gets(c[i].nome);
+
+            printf("\n Informe o Saldo do cliente: ");
+            scanf("%f",&c[i].saldo);
+        }
+    }
+
+    if(opcoes==2)
+    {
+        system("cls");
+        printf("\n Clientes cadastrados \n");
+
+        for(i=1;i<13;i++)
+        {
+           printf("\n Conta Corrente: %s \n",c[i].ndcc);
+           printf("\n Nome: %s \n",c[i].nome);
+           printf("\n Saldo: %.10f \n",c[i].saldo);
+        }
+
+    }
+    if(opcoes==3)
+    {
+        system("cls");
+
+        mf=menor_p(Cadastro c[12])
+
+
+        printf("\n Cliente com saldo menor: %f\n",mf);
+
+    }
+   }
+
+}
